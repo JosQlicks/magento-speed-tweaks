@@ -3,7 +3,8 @@ These are instructions for Hypernode. Instructions for Hipex would be a bit diff
 Jos
 
 
-### varnish vcl:
+
+### 1. varnish vcl:
 
 1. upload [the tweaked vcl file](https://github.com/JosQlicks/magento-speed-tweaks/blob/main/vcl-jhp-optimized-jos.vcl) to `/data/web/magento2`
 2. `varnishadm vcl.load mag2 /data/web/magento2/vcl-jhp-optimized-jos.vcl`
@@ -15,7 +16,8 @@ Jos
 8. check `varnishstat` for hit rate and cache usage.
 
 
-### nginx buffers:
+
+### 2. nginx buffers:
 
 1. Create extra file in: `/data/web/nginx` --> filename: `server.header_buffer_jos`
 2. add content:
@@ -31,7 +33,7 @@ proxy_busy_buffers_size 256k;
 
 
 
-### Block bots (especially bingbot; GTFO):
+### 3. Block bots (especially bingbot; GTFO):
 
 1. Create extra file in: `/data/web/nginx` --> filename: `server.bots_goaway_jos`
 2. add content:
@@ -45,7 +47,9 @@ if ($http_user_agent ~* (360Spider|bingbot|Adsbot|BLEXbot|SEOKicks|Mauibot|Riddl
 
 
 
-### Optimize jpg images losslessly on server; in `/data/web/magento2/pub/media/` directory:
+
+### 4. Optimize jpg images losslessly on server:
+in the `/data/web/magento2/pub/media/` directory.
 (except `/catalog` dir because of SRS import). This also makes jpgs load progressively in browsers.
 
 1. `cd /data/web/magento2/pub/media/`
@@ -53,7 +57,9 @@ if ($http_user_agent ~* (360Spider|bingbot|Adsbot|BLEXbot|SEOKicks|Mauibot|Riddl
 3. let this run in the background. Can take a long time.
 
 
-### magento backend settings:
+
+
+### 5. magento backend settings:
 1. stores > configuration > mirasvit > page cache warmer:
 --> "Forcibly make pages cacheable"; set: configured + set 3 checkboxes; save config.
 
@@ -63,6 +69,7 @@ if ($http_user_agent ~* (360Spider|bingbot|Adsbot|BLEXbot|SEOKicks|Mauibot|Riddl
 
 
 ====
+
 
 ## Really improve things:
 - Upgrade Magento from 2.x naar 2.4.2, including ElasticSearch. ("Search_tmp table" bug); lower mysql load.
