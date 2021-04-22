@@ -14,6 +14,7 @@ Jos
 7. `hypernode-servicectl reload nginx`
 8. check `varnishstat` for hit rate and cache usage.
 
+
 ### nginx buffers:
 
 1. Create extra file in: `/data/web/nginx` --> filename: `server.header_buffer_jos`
@@ -28,6 +29,8 @@ proxy_busy_buffers_size 256k;
 3. save
 4. `hypernode-servicectl reload nginx`
 
+
+
 ### Block bots (especially bingbot; GTFO):
 
 1. Create extra file in: `/data/web/nginx` --> filename: `server.bots_goaway_jos`
@@ -41,14 +44,16 @@ if ($http_user_agent ~* (360Spider|bingbot|Adsbot|BLEXbot|SEOKicks|Mauibot|Riddl
 4. `hypernode-servicectl reload nginx`
 
 
-### Optimize jpg images losslessly on server; in `/data/web/magento2/pub/media/` directory (except `/catalog` dir because of SRS import):
-This also makes jpgs load progressive in browsers.
 
-1. cd `/data/web/magento2/pub/media/`
+### Optimize jpg images losslessly on server; in `/data/web/magento2/pub/media/` directory:
+(except `/catalog` dir because of SRS import). This also makes jpgs load progressively in browsers.
+
+1. `cd /data/web/magento2/pub/media/`
 2. `find . -type f -not -path "./catalog/*" -not -path "./tmp/*" -not -path "./import/*" -name "*.jpg" -exec jpegoptim --all-progressive -p -t -v -P {} \;`
 3. let this run in the background. Can take a long time.
 
-### magento backend:
+
+### magento backend settings:
 1. stores > configuration > mirasvit > page cache warmer:
 --> "Forcibly make pages cacheable"; set: configured + set 3 checkboxes; save config.
 
