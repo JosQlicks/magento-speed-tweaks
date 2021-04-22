@@ -3,9 +3,11 @@ These are instructions for Hypernode. Instructions for Hipex would be a bit diff
 Jos
 
 
+[the tweaked vcl file](https://github.com/JosQlicks/magento-speed-tweaks/blob/main/vcl-jhp-optimized-jos.vcl)
+
 ### varnish vcl:
 
-1. upload tweaked vcl file to `/data/web/magento2`
+1. upload [the tweaked vcl file](https://github.com/JosQlicks/magento-speed-tweaks/blob/main/vcl-jhp-optimized-jos.vcl) to `/data/web/magento2`
 2. `varnishadm vcl.load mag2 /data/web/magento2/vcl-jhp-optimized-jos.vcl`
 3. `varnishadm vcl.use mag2`
 4. `varnishadm vcl.list`  (see if new varnish vcl is used)
