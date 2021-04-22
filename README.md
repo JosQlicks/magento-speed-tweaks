@@ -18,11 +18,13 @@ Jos
 
 1. Create extra file in: `/data/web/nginx` --> filename: `server.header_buffer_jos`
 2. add content:
-`fastcgi_buffers 16 16k;
+```
+fastcgi_buffers 16 16k;
 fastcgi_buffer_size 32k;
 proxy_buffer_size 128k;
 proxy_buffers 4 256k;
-proxy_busy_buffers_size 256k;`
+proxy_busy_buffers_size 256k;
+```
 3. save
 4. `hypernode-servicectl reload nginx`
 
@@ -30,9 +32,11 @@ proxy_busy_buffers_size 256k;`
 
 1. Create extra file in: `/data/web/nginx` --> filename: `server.bots_goaway_jos`
 2. add content:
-`if ($http_user_agent ~* (360Spider|bingbot|Adsbot|BLEXbot|SEOKicks|Mauibot|Riddler|ltx71|ZoominfoBot|seznam|velen|GrapeshotCrawler|Baidu|Censys|Pinterest) ) {
+```
+if ($http_user_agent ~* (360Spider|bingbot|Adsbot|BLEXbot|SEOKicks|Mauibot|Riddler|ltx71|ZoominfoBot|seznam|velen|GrapeshotCrawler|Baidu|Censys|Pinterest) ) {
     return 410;
-}`
+}
+```
 3. save
 4. `hypernode-servicectl reload nginx`
 
