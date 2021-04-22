@@ -76,6 +76,6 @@ in the `/data/web/magento2/pub/media/` directory.
 - Upgrade Template (Theme) to newest version.
 - Improve SRS import script: 1. faster, import only changed items; 2. flush *only* cache for changed items, not complete FPC
 - Remove unneeded JS and external pixels/scripts from template
-- Confiure Varnish cache to use disk for FPC storage; 25GB+ (Not possible on Hypernode).
+- Configure Varnish cache to use disk for FPC storage; 25GB+ (Not possible on Hypernode).
 - Configure and use Cloudflare.
 
