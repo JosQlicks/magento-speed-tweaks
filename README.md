@@ -1,9 +1,6 @@
-# magento-speed-tweaks
-List of actions to take to improve speed of magento installs.
-
 ## Manual for basic Magento2 speedup tweaks.
-## These are instructions for Hypernode. Instructions for Hipex would be a bit different.
-## Jos
+# These are instructions for Hypernode. Instructions for Hipex would be a bit different.
+# Jos
 
 
 varnish vcl:
