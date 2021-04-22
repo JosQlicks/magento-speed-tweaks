@@ -175,7 +175,7 @@ sub vcl_deliver {
     } else {
         unset resp.http.Age;
     }
-    # Not letting browser to cache non-static files.
+    # Commented three lines below to let browser cache non-static files.
     if (resp.http.Cache-Control !~ "private" && req.url !~ "^/(pub/)?(media|static)/") {
         #set resp.http.Pragma = "no-cache";
         #set resp.http.Expires = "-1";
