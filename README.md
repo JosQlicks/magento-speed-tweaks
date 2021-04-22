@@ -3,8 +3,6 @@ These are instructions for Hypernode. Instructions for Hipex would be a bit diff
 Jos
 
 
-[the tweaked vcl file](https://github.com/JosQlicks/magento-speed-tweaks/blob/main/vcl-jhp-optimized-jos.vcl)
-
 ### varnish vcl:
 
 1. upload [the tweaked vcl file](https://github.com/JosQlicks/magento-speed-tweaks/blob/main/vcl-jhp-optimized-jos.vcl) to `/data/web/magento2`
@@ -66,7 +64,7 @@ if ($http_user_agent ~* (360Spider|bingbot|Adsbot|BLEXbot|SEOKicks|Mauibot|Riddl
 
 ====
 
-### Really improve things:
+## Really improve things:
 - Upgrade Magento from 2.x naar 2.4.2, including ElasticSearch. ("Search_tmp table" bug); lower mysql load.
 - Upgrade Template (Theme) to newest version.
 - Improve SRS import script: 1. faster, import only changed items; 2. flush *only* cache for changed items, not complete FPC
