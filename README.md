@@ -38,7 +38,7 @@ proxy_busy_buffers_size 256k;
 1. Create extra file in: `/data/web/nginx` --> filename: `server.bots_goaway_jos`
 2. add content:
 ```
-if ($http_user_agent ~* (360Spider|bingbot|Adsbot|BLEXbot|SEOKicks|Mauibot|Riddler|ltx71|ZoominfoBot|seznam|velen|GrapeshotCrawler|Baidu|Censys|Pinterest) ) {
+if ($http_user_agent ~* (360Spider|bingbot|BLEXbot|SEOKicks|Mauibot|Riddler|ltx71|ZoominfoBot|seznam|velen|GrapeshotCrawler|Baidu|Censys|Pinterest) ) {
     return 410;
 }
 ```
