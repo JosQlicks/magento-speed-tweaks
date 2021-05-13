@@ -64,7 +64,7 @@ sub vcl_recv {
     }
 
     # Bypass shopping cart and checkout
-    if (req.url ~ "/checkout") {
+    if (req.url ~ "/checkout" || req.url ~ "/catalogsearch" || req.url ~ "/robots" || req.url ~ "/sitemap") {
         return (pass);
     }
 
@@ -132,7 +132,6 @@ sub vcl_hash {
         hash_data(req.http.X-Forwarded-Proto);
     }
     
-
     if (req.url ~ "/graphql") {
         call process_graphql_headers;
     }
