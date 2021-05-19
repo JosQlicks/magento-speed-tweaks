@@ -44,8 +44,8 @@ sub vcl_recv {
     if (req.method != "GET" && req.method != "HEAD") {
         return (pass);
     }
-    # Bypass shopping cart, checkout and search requests
-    if (req.url ~ "/checkout" || req.url ~ "/catalogsearch" || req.url ~ "/robots" || req.url ~ "/sitemap") {
+    # Bypass shopping cart, checkout, search requests, robots, sitemap and feeds
+    if (req.url ~ "/checkout" || req.url ~ "/catalogsearch" || req.url ~ "/robots" || req.url ~ "/sitemap" || req.url ~ "/feeds") {
         return (pass);
     }
     # Bypass health check requests
