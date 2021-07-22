@@ -34,8 +34,8 @@ This value needs to be increased. A normal "rule of thumb" is that mysql memory 
 I advise that we use a mamximum of 50% of RAM, just to be sure that there is more than enough memory left for nginx, elastic, varnish, php and redis.
 1. Look at `htop` memory usage.
 ![image](https://user-images.githubusercontent.com/80516148/126620340-a490ad5e-0507-4d0d-ba85-78667b544774.png)
-In this example you see that only ~6G of total 47G is used. We can safely increase RAM usage of MySQL to around 20+G (if needed).
-2. In this case we can ask Hypernode to increase the setting of `innodb_buffer_pool_size` to 20G.
+In this example you see that only ~10G of total 32G is used. We can safely increase RAM usage of MySQL to around 16G (if needed).
+2. In this case we can ask Hypernode to increase the setting of `innodb_buffer_pool_size` to 16G.
 
 
 
