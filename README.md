@@ -1,10 +1,30 @@
 # Manual for basic Magento2 speedup tweaks.
 These are instructions for Hypernode. Instructions for Hipex would be a bit different. 
-Jos
+ - Jos
+
+
+### 1. enable large Mysql Thread stack on Hypernode
+This might help with making sure that large / long-running scripts won't hang. 
+One CLI command needed.
+
+`hypernode-systemctl settings mysql_enable_large_thread_stack --value True`
+
+After this, a MySQL restart is needed. Couple of minutes downtime.
+
+For background info see here: https://support.hypernode.com/en/hypernode/mysql/how-to-configure-a-large-mysql-thread-stack
 
 
 
-### 1. varnish vcl:
+
+### 2. Check and increase RAM usage for MySQL (innodb_buffer_pool_size)
+Text
+
+
+
+
+
+
+### 2. varnish vcl:
 
 1. upload [the tweaked vcl file](https://github.com/JosQlicks/magento-speed-tweaks/blob/main/vcl-jhp-optimized-jos.vcl) to `/data/web/magento2`
 2. `varnishadm vcl.load mag2 /data/web/magento2/vcl-jhp-optimized-jos.vcl`
@@ -17,7 +37,8 @@ Jos
 
 
 
-### 2. nginx buffers:
+
+### 3. nginx buffers:
 
 1. Create extra file in: `/data/web/nginx` --> filename: `server.header_buffer_jos`
 2. add content:
@@ -33,7 +54,7 @@ proxy_busy_buffers_size 256k;
 
 
 
-### 3. Block bots (especially bingbot; GTFO):
+### 4. Block bots (especially bingbot; GTFO):
 
 1. Create extra file in: `/data/web/nginx` --> filename: `server.bots_goaway_jos`
 2. add content:
@@ -48,7 +69,7 @@ if ($http_user_agent ~* (360Spider|bingbot|BLEXbot|SEOKicks|Mauibot|Riddler|ltx7
 
 
 
-### 4. Optimize jpg images losslessly on server:
+### 5. Optimize jpg images losslessly on server:
 in the `/data/web/magento2/pub/media/` directory.
 (except `/catalog` dir because of SRS import). This also makes jpgs load progressively in browsers.
 
@@ -59,22 +80,14 @@ in the `/data/web/magento2/pub/media/` directory.
 
 
 
-### 5. magento backend settings:
+
+### 6. magento backend settings:
 1. stores > configuration > mirasvit > page cache warmer:
 --> "Forcibly make pages cacheable"; set: configured + set 3 checkboxes; save config.
 
 2. stores > configuration > advanced > system > full page cache: 
 --> set TTL for public content to: 2629743 (1 month); save config.
 
-
-
-### 6. enable large Mysql Thread stack on Hypernode
-This might help with making sure that large / long-running scripts won't hang. 
-One CLI command needed.
-`hypernode-systemctl settings mysql_enable_large_thread_stack --value True`
-After this, a MySQL restart is needed. Couple of minutes downtime.
-
-For background info see here: https://support.hypernode.com/en/hypernode/mysql/how-to-configure-a-large-mysql-thread-stack
 
 
 
