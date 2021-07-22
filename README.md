@@ -1,6 +1,5 @@
 # Manual for basic Magento2 speedup tweaks.
-These are instructions for Hypernode. Instructions for Hipex would be a bit different. 
- - Jos
+These are instructions for Hypernode. Instructions for Hipex would be a bit different. - Jos
 
 
 ### 1. enable large Mysql Thread stack on Hypernode
