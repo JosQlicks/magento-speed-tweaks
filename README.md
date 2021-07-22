@@ -68,6 +68,17 @@ in the `/data/web/magento2/pub/media/` directory.
 
 
 
+### 6. enable large Mysql Thread stack on Hypernode
+This might help with making sure that large / long-running scripts won't hang. 
+One CLI command needed.
+`hypernode-systemctl settings mysql_enable_large_thread_stack --value True`
+After this, a MySQL restart is needed. Couple of minutes downtime.
+
+For background info see here: https://support.hypernode.com/en/hypernode/mysql/how-to-configure-a-large-mysql-thread-stack
+
+
+
+
 ====
 
 
