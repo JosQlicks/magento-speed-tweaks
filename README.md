@@ -85,7 +85,7 @@ if ($http_user_agent ~* (360Spider|bingbot|BLEXbot|SEOKicks|Mauibot|Riddler|ltx7
 
 
 
-### 6. Optimize jpg images losslessly on server:
+### 6. Optimize jpg images losslessly on server with jpegoptim:
 in the `/data/web/magento2/pub/media/` directory.
 (except `/catalog` dir because of SRS import). This also makes jpgs load progressively in browsers.
 
@@ -93,11 +93,13 @@ in the `/data/web/magento2/pub/media/` directory.
 2. `find . -type f -not -path "./catalog/*" -not -path "./tmp/*" -not -path "./import/*" -name "*.jpg" -exec jpegoptim --all-progressive -p -t -v -P {} \;`
 3. let this run in the background. Can take a long time.
 
+### 7. Optimize PNG images losslessly on server with pngopt:
+1. `cd /data/web/magento2/pub/media/`
+2. `find -type f -iname "*.png" -exec optipng -o4 -v -preserve {} \; -exec touch -m -a  {} \; -exec chmod 755 {} \;`
+3. let this run in the background. Can take a long time.
 
 
-
-
-### 7. magento backend settings:
+### 8. magento backend settings:
 1. stores > configuration > mirasvit > page cache warmer:
 --> "Forcibly make pages cacheable"; set: configured + set 3 checkboxes; save config.
 
