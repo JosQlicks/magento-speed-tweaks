@@ -95,7 +95,7 @@ in the `/data/web/magento2/pub/media/` directory.
 
 ### 7. Optimize PNG images losslessly on server with pngopt:
 1. `cd /data/web/magento2/pub/media/`
-2. `find -type f -iname "*.png" -exec optipng -o4 -v -preserve {} \; -exec touch -m -a  {} \; -exec chmod 755 {} \;`
+2. `find -type f -iname "*.png" -exec optipng -fix -o4 -v -preserve {} \; -exec touch -m -a  {} \; -exec chmod 755 {} \;`
 3. let this run in the background. Can take a long time.
 
 
