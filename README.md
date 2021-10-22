@@ -106,18 +106,37 @@ in the `/data/web/magento2/pub/media/` directory.
 2. stores > configuration > advanced > system > full page cache: 
 --> set TTL for public content to: 2629743 (1 month); save config.
 
+### 9. Preconnect external domains in the HTTP header
+This pre-connects the DNS to domains that will be loaded later, after the HTML has parsed. This speeds up page loads with slow-loading external sites/scripts, by already connecting to those domains AS SOON AS the http header is sent to the browser.
+Longer explanation: https://andydavies.me/blog/2019/03/22/improving-perceived-performance-with-a-link-rel-equals-preconnect-http-header/
 
+Change the nginx config:
 
+1. Create extra file in: `/data/web/nginx` --> filename: `server.preconnect.conf`
+2. add content (set domains etc. accordingly)
+```
+add_header Link '<https://cloud.wordlift.io/>; rel=preconnect; crossorigin=anomynous; probability=1.0;';
+add_header Link '<https://connect.nosto.com/>; rel=preconnect; crossorigin=anonimous; probability=1.0;';
+add_header Link '<https://cloud.wordlift.io/app/bootstrap.js>; as=script; crossorigin=anonymous; rel=preload;';
+```
+3. save
+4. `hypernode-servicectl reload nginx`
+
+Done.
+
+Test the header by using `curl -I https://www.example.com`.
 
 
 ====
 
 
-## Really improve things:
-- Upgrade Magento from 2.x naar 2.4.2, including ElasticSearch. ("Search_tmp table" bug); lower mysql load.
+## Improvements general:
+- Upgrade Magento from 2.x naar 2.4.x, including ElasticSearch. ("Search_tmp table" bug); lower mysql load.
 - Upgrade Template (Theme) to newest version.
-- Improve SRS import script: 1. faster, import only changed items; 2. flush *only* cache for changed items, not complete FPC
+- Improve SRS import script: faster -> import only changed items; 
+- flush *only* cache for changed items, not complete FPC
 - Remove unneeded JS and external pixels/scripts from template
-- Configure Varnish cache to use disk for FPC storage; 25GB+ (Not possible on Hypernode).
 - Configure and use Cloudflare.
+
+
 
